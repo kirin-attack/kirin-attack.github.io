@@ -25,16 +25,29 @@
         }
     </style>
 </head>
-<body onload="document.getElementById('pdf').style.height = (window.innerHeight - 100) + 'px';">
+<body>
     <p>Paper pre-print at arXiv:
         <a href="https://arxiv.org/abs/2210.10676">https://arxiv.org/abs/2210.10676</a>
-        (or see <a href="https://arxiv.org/pdf/2210.10676.pdf">PDF below</a>)
+        (or <a href="https://arxiv.org/pdf/2210.10676.pdf">direct PDF</a>)
     </p>
+
     <embed
         id="pdf"
         src="./2210.10676.pdf" 
         type="application/pdf"
+        style="display: none"
         width="100%" height="500px">
 
+    <script>
+        window.onload = function() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.location.href = "https://arxiv.org/abs/2210.10676";
+            } else {
+                var pdf = document.getElementById('pdf');
+                pdf.style.height = (window.innerHeight - 100) + 'px';
+                pdf.style.display = "block";
+            }
+        };
+    </script>
 </body>
 </html>
