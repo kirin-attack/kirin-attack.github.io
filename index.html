@@ -1,53 +1,158 @@
-<!doctype html>
-<html lang=en>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset=utf-8>
-    <!--    <meta http-equiv="refresh" content="0; url=https://arxiv.org/abs/2210.10676" /> //-->
-    <title>Kirin Attack</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirin: Hitting the Internet with Distributed BGP Announcements</title>
     <style>
         body {
-            text-align: center;
-            font-family: sans-serif;
-            font-size: x-large;
-            font-weight: normal;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f9;
             color: #333;
-            line-height: 2em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        header {
+            background: #34495e;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .authors {
+            margin: 1rem 0;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+        .authors p {
+            margin: 0.5rem 0;
+        }
+        .authors a {
+            color: #1abc9c;
+        }
+        .conference-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        .conference-info a {
+            color: #1abc9c;
+        }
+        main {
+            padding: 2rem 1rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .highlight {
+            background: #eef2f7;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            font-size: 1.1rem;
+            text-align: justify;
         }
         a {
+            color: #2980b9;
             text-decoration: none;
-            color: #00a;
         }
         a:hover {
             text-decoration: underline;
         }
-        a:visited {
-            color: #00a;
+        .graphics {
+            text-align: center;
+        }
+        .graphics img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+        }
+        footer {
+            background: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        footer p {
+            margin: 0.5rem 0;
+        }
+        footer a {
+            color: #1abc9c;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <p>Paper pre-print at arXiv:
-        <a href="https://arxiv.org/abs/2210.10676">https://arxiv.org/abs/2210.10676</a>
-        (or <a href="https://arxiv.org/pdf/2210.10676.pdf">direct PDF</a>)
-    </p>
-
-    <embed
-        id="pdf"
-        src="./2210.10676.pdf" 
-        type="application/pdf"
-        style="display: none"
-        width="100%" height="500px">
-
-    <script>
-        window.onload = function() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                window.location.href = "https://arxiv.org/abs/2210.10676";
-            } else {
-                var pdf = document.getElementById('pdf');
-                pdf.style.height = (window.innerHeight - 100) + 'px';
-                pdf.style.display = "block";
-            }
-        };
-    </script>
+    <header>
+        <div class="container">
+            <h1>Kirin: Hitting the Internet<br />with Distributed BGP Announcements</h1>
+            <div class="authors">
+                <a href="https://whoislars.fyi/">Lars Prehn</a>,
+                <a href="https://www.foremski.pl/">Pawel Foremski</a>,
+                <a href="https://olivergasser.net/">Oliver Gasser</a>
+            </div>
+            <div class="conference-info">
+                Presented at
+                <a href="https://asiaccs2024.sutd.edu.sg/">ACM AsiaCCS 2024 Singapore</a>
+                and
+                <a href="https://datatracker.ietf.org/meeting/115/proceedings">IETF 115 London</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <section>
+            <h2>Abstract</h2>
+            <div class="highlight">
+                <p>The Internet is a critical resource in the daily life of billions of users. To support the growing number of users and their increasing demands, operators continuously scale their network footprint—e.g., by joining Internet Exchange Points (IXPs)—and adopt relevant technologies—such as IPv6—which provides a vastly larger address space than its predecessor.</p>
+                <p>In this paper, we revisit prefix de-aggregation attacks in the light of these two changes and introduce Kirin—an advanced BGP prefix de-aggregation attack that announces millions of IPv6 routes via thousands of IXP connections to overflow the memory of routers within remote ASes. Kirin's highly distributed nature allows it to bypass traditional route-flooding defense mechanisms, such as per-session prefix limits or route flap damping.</p>
+                <p>We analyze Kirin's theoretical feasibility by formulating it as a mathematical optimization problem, test for practical hurdles by deploying enough infrastructure to perform a micro-scale Kirin attack using 4 IXPs, and validate our assumptions via BGP data analysis, real-world measurements, and router testbed experiments. Despite its low deployment cost, we find that Kirin may inject lethal amounts of routes into the routers of thousands of ASes.</p>
+            </div>
+        </section>
+        <section>
+            <h2>Read The Paper</h2>
+            <ul>
+                <li><a href="kirin-attack.pdf">Full PDF</a> (Open Access)</li>
+                <li><a href="https://doi.org/10.1145/3634737.3657000">ACM Digital Library</a></li>
+                <li><a href="kirin-asiaccs.pdf">AsiaCCS 2024 Singapore - Conference Slides</a></li>
+                <li><a href="https://datatracker.ietf.org/meeting/115/materials/slides-115-maprg-kirin-hitting-the-internet-with-millions-of-distributed-ipv6-announcements-02">IETF 115 London - Conference Slides</a></li>
+                <li><a href="https://blog.apnic.net/2023/03/13/kirin-a-bgp-flooding-attack-feasibility/">APNIC Blog Post</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Understanding BGP and Kirin</h2>
+            <p><a href="https://learn.nsrc.org/bgp/how_bgp_works">BGP (Border Gateway Protocol)</a> is the protocol that manages how packets travel through the Internet by exchanging IP prefix reachability information. Despite its robustness, BGP is vulnerable to various attacks, including prefix de-aggregation attacks, where an attacker floods the network with too many routes.</p>
+            <p>The paper "Kirin: Hitting the Internet with Distributed BGP Announcements" revisits BGP prefix de-aggregation attacks in a new context. We leverage the vast IPv6 address space to overload the memory of Internet routers by distributing millions of new routes using many BGP sessions.</p>
+            <p>Our research includes a detailed analysis of Kirin's feasibility, presents real-world experiments, and discusses the potential impact. The study highlights the low cost and minimal infrastructure needed to launch such an attack, making it a significant concern for network operators.</p>
+        </section>
+        <section>
+            <h2>What Should I Do?</h2>
+            <p>The paper discusses various defense mechanisms to mitigate the impact of Kirin attacks. By implementing strict filtering policies and monitoring BGP sessions for unusual activity, network operators can significantly reduce the risk of memory overloads caused by excessive route announcements.</p>
+            <p>For more detailed guidelines, see our <a href="https://seclists.org/nanog/2022/Oct/179">NANOG mailing list announcement</a>.
+            For an open-source implementation of a possible defense mechanism, see <a href="https://ripe88.ripe.net/archives/video/1365/">bgpipe, presented at RIPE88.</a></p>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>
+                Contact:
+                <a href="mailto:lprehn@mpi-inf.mpg.de">Lars Prehn</a>,
+                <a href="mailto:pjf@iitis.pl">Pawel Foremski</a>,
+                <a href="mailto:oliver@ipinfo.io">Oliver Gasser</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
